@@ -16,5 +16,11 @@ namespace QuanLyThuVien
         {
             InitializeComponent();
         }
+
+        private void HienThi() { }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            HienThi();
+        }
     }
 }
