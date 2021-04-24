@@ -46,7 +46,11 @@ namespace QuanLyThuVien
             // 
             // button2
             // 
+<<<<<<< HEAD
             this.button2.Location = new System.Drawing.Point(89, 43);
+=======
+            this.button2.Location = new System.Drawing.Point(111, 135);
+>>>>>>> c93b290 (test2)
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -55,7 +59,11 @@ namespace QuanLyThuVien
             // 
             // button3
             // 
+<<<<<<< HEAD
             this.button3.Location = new System.Drawing.Point(26, 72);
+=======
+            this.button3.Location = new System.Drawing.Point(102, 182);
+>>>>>>> c93b290 (test2)
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(75, 23);
             this.button3.TabIndex = 2;
@@ -64,7 +72,11 @@ namespace QuanLyThuVien
             // 
             // button4
             // 
+<<<<<<< HEAD
             this.button4.Location = new System.Drawing.Point(59, 113);
+=======
+            this.button4.Location = new System.Drawing.Point(111, 231);
+>>>>>>> c93b290 (test2)
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(75, 23);
             this.button4.TabIndex = 3;
