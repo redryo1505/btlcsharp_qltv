@@ -1,0 +1,253 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="QuanLyThuVienModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ChiTietPhieu">
+    <Key>
+      <PropertyRef Name="maPhieu" />
+      <PropertyRef Name="maTaiLieu" />
+    </Key>
+    <Property Name="maPhieu" Type="Int32" Nullable="false" />
+    <Property Name="maTaiLieu" Type="Int32" Nullable="false" />
+    <Property Name="soLuong" Type="Int32" />
+    <NavigationProperty Name="PhieuMuonTra" Relationship="Self.FK__ChiTietPh__maPhi__20C1E124" FromRole="ChiTietPhieu" ToRole="PhieuMuonTra" />
+    <NavigationProperty Name="TaiLieu" Relationship="Self.FK__ChiTietPh__maTai__24927208" FromRole="ChiTietPhieu" ToRole="TaiLieu" />
+  </EntityType>
+  <EntityType Name="DocGia">
+    <Key>
+      <PropertyRef Name="soThe" />
+    </Key>
+    <Property Name="soThe" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenDocGia" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="diaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="dienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="ngayCap" Type="DateTime" Precision="0" />
+    <Property Name="hanSD" Type="DateTime" Precision="0" />
+    <Property Name="nguoiCN" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ngayCN" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="PhieuMuonTra" Relationship="Self.FK__PhieuMuon__soThe__21B6055D" FromRole="DocGia" ToRole="PhieuMuonTra" />
+    <NavigationProperty Name="XyLyVP" Relationship="Self.FK__XyLyVP__soThe__22AA2996" FromRole="DocGia" ToRole="XyLyVP" />
+  </EntityType>
+  <EntityType Name="NhanVien">
+    <Key>
+      <PropertyRef Name="maNV" />
+    </Key>
+    <Property Name="maNV" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenDangNhap" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="matKhau" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tenNV" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="diaChi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="viTri" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ngaySinh" Type="DateTime" Precision="0" />
+    <NavigationProperty Name="PhieuMuonTra" Relationship="Self.FK__PhieuMuonT__maNV__1FCDBCEB" FromRole="NhanVien" ToRole="PhieuMuonTra" />
+  </EntityType>
+  <EntityType Name="NhaXuatBan">
+    <Key>
+      <PropertyRef Name="maNXB" />
+    </Key>
+    <Property Name="maNXB" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenNXB" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="diaChi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="email" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="TaiLieu" Relationship="Self.FK__TaiLieu__maNXB__267ABA7A" FromRole="NhaXuatBan" ToRole="TaiLieu" />
+  </EntityType>
+  <EntityType Name="PhieuMuonTra">
+    <Key>
+      <PropertyRef Name="maPhieu" />
+    </Key>
+    <Property Name="maPhieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ngayMuon" Type="DateTime" Precision="0" />
+    <Property Name="ngayTra" Type="DateTime" Precision="0" />
+    <Property Name="ghiChu" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="maNV" Type="Int32" Nullable="false" />
+    <Property Name="soThe" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ChiTietPhieu" Relationship="Self.FK__ChiTietPh__maPhi__20C1E124" FromRole="PhieuMuonTra" ToRole="ChiTietPhieu" />
+    <NavigationProperty Name="DocGia" Relationship="Self.FK__PhieuMuon__soThe__21B6055D" FromRole="PhieuMuonTra" ToRole="DocGia" />
+    <NavigationProperty Name="NhanVien" Relationship="Self.FK__PhieuMuonT__maNV__1FCDBCEB" FromRole="PhieuMuonTra" ToRole="NhanVien" />
+  </EntityType>
+  <EntityType Name="TacGia">
+    <Key>
+      <PropertyRef Name="maTacGia" />
+    </Key>
+    <Property Name="maTacGia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenTacGia" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="dienThoai" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+    <Property Name="diaChi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TaiLieu" Relationship="Self.FK__TaiLieu__maTacGi__25869641" FromRole="TacGia" ToRole="TaiLieu" />
+  </EntityType>
+  <EntityType Name="TaiLieu">
+    <Key>
+      <PropertyRef Name="maTaiLieu" />
+    </Key>
+    <Property Name="maTaiLieu" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenTaiLieu" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="soLuong" Type="Int32" />
+    <Property Name="giaTien" Type="Double" />
+    <Property Name="namXuatBan" Type="DateTime" Precision="0" />
+    <Property Name="maTheLoai" Type="Int32" Nullable="false" />
+    <Property Name="maTacGia" Type="Int32" Nullable="false" />
+    <Property Name="maNXB" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ChiTietPhieu" Relationship="Self.FK__ChiTietPh__maTai__24927208" FromRole="TaiLieu" ToRole="ChiTietPhieu" />
+    <NavigationProperty Name="NhaXuatBan" Relationship="Self.FK__TaiLieu__maNXB__267ABA7A" FromRole="TaiLieu" ToRole="NhaXuatBan" />
+    <NavigationProperty Name="TacGia" Relationship="Self.FK__TaiLieu__maTacGi__25869641" FromRole="TaiLieu" ToRole="TacGia" />
+    <NavigationProperty Name="TheLoai" Relationship="Self.FK__TaiLieu__maTheLo__239E4DCF" FromRole="TaiLieu" ToRole="TheLoai" />
+  </EntityType>
+  <EntityType Name="TheLoai">
+    <Key>
+      <PropertyRef Name="maTheLoai" />
+    </Key>
+    <Property Name="maTheLoai" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tenTheLoai" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="TaiLieu" Relationship="Self.FK__TaiLieu__maTheLo__239E4DCF" FromRole="TheLoai" ToRole="TaiLieu" />
+  </EntityType>
+  <EntityType Name="XyLyVP">
+    <Key>
+      <PropertyRef Name="ID_Phat" />
+    </Key>
+    <Property Name="ID_Phat" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="liDoVP" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="htXuLy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ngayXL" Type="DateTime" Precision="0" />
+    <Property Name="nguoiXL" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="ngayMoThe" Type="DateTime" Precision="0" />
+    <Property Name="soThe" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="DocGia" Relationship="Self.FK__XyLyVP__soThe__22AA2996" FromRole="XyLyVP" ToRole="DocGia" />
+  </EntityType>
+  <Association Name="FK__ChiTietPh__maPhi__20C1E124">
+    <End Role="PhieuMuonTra" Type="Self.PhieuMuonTra" Multiplicity="1" />
+    <End Role="ChiTietPhieu" Type="Self.ChiTietPhieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="PhieuMuonTra">
+        <PropertyRef Name="maPhieu" />
+      </Principal>
+      <Dependent Role="ChiTietPhieu">
+        <PropertyRef Name="maPhieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__ChiTietPh__maTai__24927208">
+    <End Role="TaiLieu" Type="Self.TaiLieu" Multiplicity="1" />
+    <End Role="ChiTietPhieu" Type="Self.ChiTietPhieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TaiLieu">
+        <PropertyRef Name="maTaiLieu" />
+      </Principal>
+      <Dependent Role="ChiTietPhieu">
+        <PropertyRef Name="maTaiLieu" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhieuMuon__soThe__21B6055D">
+    <End Role="DocGia" Type="Self.DocGia" Multiplicity="1" />
+    <End Role="PhieuMuonTra" Type="Self.PhieuMuonTra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocGia">
+        <PropertyRef Name="soThe" />
+      </Principal>
+      <Dependent Role="PhieuMuonTra">
+        <PropertyRef Name="soThe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__XyLyVP__soThe__22AA2996">
+    <End Role="DocGia" Type="Self.DocGia" Multiplicity="1" />
+    <End Role="XyLyVP" Type="Self.XyLyVP" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DocGia">
+        <PropertyRef Name="soThe" />
+      </Principal>
+      <Dependent Role="XyLyVP">
+        <PropertyRef Name="soThe" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__PhieuMuonT__maNV__1FCDBCEB">
+    <End Role="NhanVien" Type="Self.NhanVien" Multiplicity="1" />
+    <End Role="PhieuMuonTra" Type="Self.PhieuMuonTra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhanVien">
+        <PropertyRef Name="maNV" />
+      </Principal>
+      <Dependent Role="PhieuMuonTra">
+        <PropertyRef Name="maNV" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaiLieu__maNXB__267ABA7A">
+    <End Role="NhaXuatBan" Type="Self.NhaXuatBan" Multiplicity="1" />
+    <End Role="TaiLieu" Type="Self.TaiLieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="NhaXuatBan">
+        <PropertyRef Name="maNXB" />
+      </Principal>
+      <Dependent Role="TaiLieu">
+        <PropertyRef Name="maNXB" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaiLieu__maTacGi__25869641">
+    <End Role="TacGia" Type="Self.TacGia" Multiplicity="1" />
+    <End Role="TaiLieu" Type="Self.TaiLieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TacGia">
+        <PropertyRef Name="maTacGia" />
+      </Principal>
+      <Dependent Role="TaiLieu">
+        <PropertyRef Name="maTacGia" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__TaiLieu__maTheLo__239E4DCF">
+    <End Role="TheLoai" Type="Self.TheLoai" Multiplicity="1" />
+    <End Role="TaiLieu" Type="Self.TaiLieu" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TheLoai">
+        <PropertyRef Name="maTheLoai" />
+      </Principal>
+      <Dependent Role="TaiLieu">
+        <PropertyRef Name="maTheLoai" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="QuanLyThuVienEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ChiTietPhieu" EntityType="Self.ChiTietPhieu" />
+    <EntitySet Name="DocGia" EntityType="Self.DocGia" />
+    <EntitySet Name="NhanVien" EntityType="Self.NhanVien" />
+    <EntitySet Name="NhaXuatBan" EntityType="Self.NhaXuatBan" />
+    <EntitySet Name="PhieuMuonTra" EntityType="Self.PhieuMuonTra" />
+    <EntitySet Name="TacGia" EntityType="Self.TacGia" />
+    <EntitySet Name="TaiLieu" EntityType="Self.TaiLieu" />
+    <EntitySet Name="TheLoai" EntityType="Self.TheLoai" />
+    <EntitySet Name="XyLyVP" EntityType="Self.XyLyVP" />
+    <AssociationSet Name="FK__ChiTietPh__maPhi__20C1E124" Association="Self.FK__ChiTietPh__maPhi__20C1E124">
+      <End Role="PhieuMuonTra" EntitySet="PhieuMuonTra" />
+      <End Role="ChiTietPhieu" EntitySet="ChiTietPhieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__ChiTietPh__maTai__24927208" Association="Self.FK__ChiTietPh__maTai__24927208">
+      <End Role="TaiLieu" EntitySet="TaiLieu" />
+      <End Role="ChiTietPhieu" EntitySet="ChiTietPhieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhieuMuon__soThe__21B6055D" Association="Self.FK__PhieuMuon__soThe__21B6055D">
+      <End Role="DocGia" EntitySet="DocGia" />
+      <End Role="PhieuMuonTra" EntitySet="PhieuMuonTra" />
+    </AssociationSet>
+    <AssociationSet Name="FK__XyLyVP__soThe__22AA2996" Association="Self.FK__XyLyVP__soThe__22AA2996">
+      <End Role="DocGia" EntitySet="DocGia" />
+      <End Role="XyLyVP" EntitySet="XyLyVP" />
+    </AssociationSet>
+    <AssociationSet Name="FK__PhieuMuonT__maNV__1FCDBCEB" Association="Self.FK__PhieuMuonT__maNV__1FCDBCEB">
+      <End Role="NhanVien" EntitySet="NhanVien" />
+      <End Role="PhieuMuonTra" EntitySet="PhieuMuonTra" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaiLieu__maNXB__267ABA7A" Association="Self.FK__TaiLieu__maNXB__267ABA7A">
+      <End Role="NhaXuatBan" EntitySet="NhaXuatBan" />
+      <End Role="TaiLieu" EntitySet="TaiLieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaiLieu__maTacGi__25869641" Association="Self.FK__TaiLieu__maTacGi__25869641">
+      <End Role="TacGia" EntitySet="TacGia" />
+      <End Role="TaiLieu" EntitySet="TaiLieu" />
+    </AssociationSet>
+    <AssociationSet Name="FK__TaiLieu__maTheLo__239E4DCF" Association="Self.FK__TaiLieu__maTheLo__239E4DCF">
+      <End Role="TheLoai" EntitySet="TheLoai" />
+      <End Role="TaiLieu" EntitySet="TaiLieu" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
